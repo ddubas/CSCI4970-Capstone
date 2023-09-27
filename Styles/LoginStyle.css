@@ -42,7 +42,7 @@
     align-content: center;
     background-color: gray;
     flex-wrap: wrap;
-    background-image: url(Images/LoginBackground.jpg);
+    background-image: url(/Images/LoginBackground.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: -20vw ;
