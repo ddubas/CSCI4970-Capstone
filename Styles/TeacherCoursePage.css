@@ -3,19 +3,28 @@
     width:100vw;
     display: grid;
 
-    grid-template-rows: 10vh 80vh 10vh;
-    grid-template-columns: 8vw 41vw 41vw; 
+    grid-template-rows: 8vh 80vh 10vh;
+    grid-template-columns: 9.1vw 40vw 40vw; 
 }
 
 .homeBar{
-    grid-column: 1/span 3;
+    padding-top: 1px;
+    grid-column: 1/span 4;
 }
 
 .navBar{
-    grid-row: 2/span 3;
+    grid-row: 2/span 4;
     grid-column: 1;
     height: 100%;
     width: 100%;
+    font-size: 15px;
+    background-color: rgb(239, 238, 238);
+}
+
+.footer{
+    grid-row: 3/span 3;
+    grid-column: 2/span 3;
+    background-color: rgb(239, 238, 238);
 }
 
 .courseList{
