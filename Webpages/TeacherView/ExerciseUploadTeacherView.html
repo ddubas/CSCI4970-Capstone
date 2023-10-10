@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Creator</title>
-    <link rel="stylesheet" href="/Styles/ExerciseUploadTeacherView.css">
+    <link rel="stylesheet" href="/Styles/TeacherView/ExerciseUploadTeacherView.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
 </head>
@@ -49,7 +49,7 @@
                     <form>
                         <div class="form-group">
                         <label for="exampleFormControlFile1">Upload Python Code:</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
                         </div>
                     </form>
                 </div>
@@ -64,13 +64,22 @@
                       <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Hint to help students">
                     </div>
                     <div class="form-group">
-                      <label for="formGroupExampleInput2">Another label</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                      <label for="formGroupExampleInput2">Line Nuber</label>
+                      <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Input the line number for the hint" min="0">
                     </div>
                   </form>
             </div>
-            <div class="dueDatebox">
+            <div class="dueDateBox">
+                <form action="" method="post">
+                    <label for="due">Select due date</label>
+                    <input type="date" id="due" class="dueDateInput" required/>
+                </form>
                 
+            </div>
+            <div class="exampleSubButton">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-primary btn-lg">Add Example</button>
+                </form>
             </div>
         </div>
 </body>
