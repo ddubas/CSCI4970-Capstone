@@ -33,6 +33,15 @@
     z-index: 2;
 }
 
+.footer2{
+    bottom:0;
+    width:100vw;
+    height: 5rem;
+    background-color: rgb(239, 238, 238);
+    position: fixed;
+    z-index: 2;
+}
+
 .addCourseBox{
     width:15rem;
     height:15rem;
@@ -49,7 +58,7 @@
     width:60rem;
     height:15rem;
     position:relative;
-    left:30vw;
+    left:20%;
     top: 10rem;
 }
 
@@ -57,7 +66,7 @@
     width:60rem;
     height:5rem;
     position: relative;
-    left: 30vw;
+    left: 20%;
     top: 10rem;
     background-color: rgb(239, 238, 238);
     font-size: 3em; 
@@ -66,4 +75,121 @@
     justify-items: center;
     align-items: center;
     border-radius: 1rem;
+    border: 1px solid black;
+}
+
+.studentListBox{
+    height:15rem;
+    width:185rem;
+    position: relative;
+    left:20%;
+    top:10rem;
+}
+
+.studentProfileBox{
+    width:60rem;
+    height:20rem;
+    position: relative;
+    background-color: rgb(239, 238, 238);
+    left:20%;
+    top: 10rem;
+    border-radius: 1rem;
+    border: 1px solid black;
+}
+
+.studentProfileCard{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding:1rem;
+    
+}
+
+.cardFormat{
+    border-bottom: 1px dashed black;
+}
+
+.studentGrade{
+    font-size: 1rem;
+}
+
+.workArea{
+    width:90vw;
+    height:80vh;
+    background-color: rgb(239, 238, 238);
+    position: relative;
+    top: 10vh;
+    left:5vw;
+    display: grid;
+    grid-template-rows: 10% 40% 20% 30%;
+    grid-template-columns: 40% 30% 30%;
+}
+
+.exerciseName{
+    font-size: 2rem;
+    width: 100%;
+    grid-column: 1 / 4;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(179, 175, 175);
+    border-radius: 1rem;
+    left:50%;
+}
+
+.codeDisplayBox{
+    width:100%;
+    background-color: gray;
+    height: 100%;
+    position: inherit;
+    margin-top: 1%;
+    margin-left: 1%;
+    border-radius: 1rem;
+    overflow: scroll;
+
+}
+
+.line{
+    position: inherit;
+    display: block;
+    padding-left: 1rem;
+    height:auto;
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.currentLine{
+    padding-left: 1rem;
+    height:auto;
+    border: 1px solid black;
+    width: 100%;
+    background-color: rgba(243, 243, 5, 0.76);
+    border-radius: 1rem;
+}
+
+.answerBox{
+    height: 100%;
+    width: 100%;
+    background-color: brown;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    overflow: scroll;
+}
+
+.answerOptions{
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    overflow: scroll;
+}
+
+.hintBox{
+    
 }
