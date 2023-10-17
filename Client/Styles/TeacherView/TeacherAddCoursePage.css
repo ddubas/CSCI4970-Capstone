@@ -234,3 +234,15 @@
     align-items: center;
 }
 
+.addAnnouncementButton{
+    position: relative;
+    left: 85%;
+    top: 13%;
+}
+
+.deleteAnouncementButton{
+    position: inherit;
+    right:0%;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
