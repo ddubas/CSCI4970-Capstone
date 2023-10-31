@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 const loginRoute = require('./Server/routes/login');
 const pool = require("./Server/data/db")
+const upload = require('./Server/upload/upload');
 
 dotenv.config();
 
@@ -102,6 +103,12 @@ app.delete("/user/delete/:id", async (req, res) => {
   }
 });
 
+// Set up a route for file uploads
+app.post("/upload", upload.single('file'), (req, res) => {
+  // Handle the uploaded file
+  //console.log(req.file)
+  res.json({ message: 'File uploaded successfully!' });
+});
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

@@ -47,15 +47,13 @@
             </div>
             </div>
         </div>
-            <div class="contFileBox">
-                <div class="fileUpload">
-                    <form>
-                        <div class="form-group">
-                        <label for="exampleFormControlFile1">Upload Python Code:</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
-                        </div>
-                    </form>
-                </div>
+            <div>
+                <form id="uploadForm" action="/upload" enctype="multipart/form-data" method="post">
+                    <input type="file" name="file" required/>
+                    <button type="submit">Upload</button>
+                </form>
+                <h2></h2>
+                <h3></h3>
             </div>
             <div class="footer">
                 <p>Footer</p>
@@ -85,5 +83,39 @@
                 </form>
             </div>
         </div>
+        <script>
+            const form = document.getElementById('uploadForm')
+
+            const sendFiles = async () => {
+
+                const myFiles = document.getElementById('myFiles').files
+
+                const formData = new FormData()
+
+                Object.keys(myFiles).forEach(key => {
+                    formData.append(myFiles.item(key).name, myFiles.item(key))
+                })
+            }
+
+            const response = await fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData
+            })
+
+            const json = await response.json()
+
+            const h2 = document.querySelector('h2')
+            h2.textContent = `Status: ${json?.status}`
+
+            const h3 = document.querySelector('h3')
+            h3.textContent = json?.message
+
+            console.log(json)
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault()
+                sendFiles()
+            })
+        </script>
 </body>
 </html>
