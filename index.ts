@@ -4,7 +4,8 @@ import path from 'path';
 const loginRoute = require('./Server/routes/login');
 const pool = require("./Server/data/db")
 const upload = require('./Server/upload/upload');
-
+const studentRoute = require('./Server/routes/student');
+const teacherRoute = require('./Server/routes/teacher');
 dotenv.config();
 
 const app: Express = express();
@@ -14,40 +15,44 @@ app.use(express.json()); // => req.body
 // Set up static file serving for the 'Client' directory
 app.use(express.static(path.join(__dirname, 'Client')));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 
 app.use(loginRoute);
+app.use(studentRoute);
+app.use(teacherRoute);
 
-// Get all users
-app.get("/user/allUsers", async (req, res) => {
+// Get a user
+app.post('/user/login', async (req, res) => {
   try {
-    const allUsers = await pool.query("SELECT * FROM users");
-    res.json(allUsers.rows);
+    const { username, password } = req.body;
+    // Query the database for the user with the submitted username
+    const userQuery = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
 
-  } catch (err: any) {
-    if (err instanceof Error) {
-      console.log(err.message);
+    // Check if a user with the submitted username exists
+    if (userQuery.rows.length === 1) {
+      const user = userQuery.rows[0];
+
+      // Check if the submitted password matches the password in the database
+      if (user.password === password) {
+        console.log("Login successful");
+
+        if (user.isteacher === true) {
+          console.log("Redirecting to teacher page");
+          return res.redirect('/Teacher/Home'); // Redirect to the teacher home page
+        } else {
+          console.log("Redirecting to student page");
+          res.redirect('/Student/Home'); // Redirect to the student home page
+        }
+      } else {
+        console.log("Invalid password");
+      }
     } else {
-      console.log("An unknown error occurred:", err);
+      console.log("User not found");
     }
-  }
-});
-
-//Get a user
-app.get("/user/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await pool.query("SELECT * FROM users WHERE userid = $1", [id]);
-    res.json(user.rows[0]); //Shows the first instance of the select statement.
-
-  } catch (err: any) {
-    if (err instanceof Error) {
-      console.log(err.message);
-    } else {
-      console.log("An unknown error occurred:", err);
-    }
+  } catch (err) {
+    console.error(err);
   }
 });
 

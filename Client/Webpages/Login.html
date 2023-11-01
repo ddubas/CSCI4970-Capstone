@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/Client/Styles/LoginStyle.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../Styles/LoginStyle.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
-    
 </head>
 <body>
     <header class="heading">
@@ -18,30 +17,27 @@
             <p class = "programName">Algo Pro</p>
         </div>
         <span class = "signupButton"> 
-            <a href="RegisterPage.html">Register</a>
+            <a href="/">Register</a>
         </span>
     </header>
     <div class="layoutBox">
-        <form action="" class="submittion" methood = "post">
-            <div class = "submitBox">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="" id="userEmail">
+        <form action="" class="submittion" id="login-form" method="post">
+            <div class="submitBox">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username">
             </div>
-            <div class = "submitBox">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="" id="userPassword">
-                <script></script>
+            <div class="submitBox">
+                <label for="userPassword">Password</label>
+                <input type="password" class="form-control" name="password" id="userPassword">
             </div>
             <div>
-                <a onclick="login()" href="">
-                    <button type = "submit" class = "btn btn-primary">
-                        Login
-                    </button>
-                </a>
+                <button type="submit" class="btn btn-primary">
+                    Login
+                </button>
                 <a href="ForgotPasswordPage.html" class="btn btn-secondary">Forgot Password</a>
             </div>
-        </form>
+        </form>        
     </div>
-    <script src="/Client/Scripts/Login.js"></script>
+    <script src="../Scripts/Login.js"></script>
 </body>
 </html>
