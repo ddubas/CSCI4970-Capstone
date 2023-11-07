@@ -6,21 +6,20 @@ const db = require('./test-database.ts'); // Import the test database setup
 // Test the Express app
 describe('Express App', () => {
   // Define a test case for a specific route
-  it('should return "Hello, World!" from the root route', async (done) => {
+  it('should return "Hello, World!" from the root route', async () => {
     const response = await request(app).get('/');
     expect(response.status).toBe(200);
     expect(response.text).toBe('Hello, World!');
-    done();
   });
+});
 
   // Add more test cases for other routes and scenarios
-});
 
 // Test the database
 describe('Database', () => {
   // Define a test case to check if a table contains data
   it('should have data in the "users" table', (done) => {
-    db.all('SELECT * FROM users', [], (err, rows) => {
+    db.all('SELECT * FROM users', [], (err: Error | null, rows: any[]) => {
       if (err) {
         throw err;
       }
@@ -33,23 +32,30 @@ describe('Database', () => {
 // Export the app for testing
 module.exports = app;
 
-beforeAll(async () => {
-  // Initialize and seed the test database
-  // You can create tables and insert test data here
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database(':memory:');
 
-  // Start your Express app after the database is set up
-  return new Promise((resolve) => {
-    const server = app.listen(0, () => {
-      // Attach the server instance to the app for closing later
-      app.server = server;
-      resolve();
-    });
-  });
+// Create tables and insert test data
+db.serialize(() => {
+  // Create a "users" table
+  db.run("CREATE TABLE users (id INT, username TEXT, email TEXT)");
+
+  // Insert test data into the "users" table
+  const insertUser = db.prepare("INSERT INTO users VALUES (?, ?, ?)");
+  insertUser.run(1, 'user1', 'user1@example.com');
+  insertUser.run(2, 'user2', 'user2@example.com');
+  insertUser.finalize(); // Finalize the prepared statement
+
+  // Create other tables and insert more test data as needed
 });
+
+// Export the database for use in your tests
+module.exports = db;
+
 
 afterAll(async () => {
   // Close the test database and stop the Express app after tests
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     db.close(() => {
       app.server.close(() => {
         resolve();
@@ -59,4 +65,4 @@ afterAll(async () => {
 });
 
 
-
+});

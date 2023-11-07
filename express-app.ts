@@ -1,7 +1,16 @@
 const express = require('express');
 const app = express();
 
-// Configure your app as needed (middlewares, routes, etc.)
-// You can use the 'db' variable in your routes and middleware as necessary
+// Middlewares
+app.use(express.json()); // Parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+
+// Example route
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+// Define more routes, middleware, and other configurations as needed
 
 module.exports = app;
+
