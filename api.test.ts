@@ -1,11 +1,36 @@
-const axios = require('axios');
+const request = require('supertest');
+const app = require('./express-app.ts'); // Import your Express app instance
+const db = require('./test-database.ts'); // Import the test database setup
 
-test('API endpoint returns a status code of 200', async () => {
-  // Make an HTTP request to the API endpoint
-  const response = await axios.get('https://example.com/api/endpoint'); // Replace with your API URL
+// Your test code that uses 'app' and 'db'
 
-  // Verify that the status code is 200
-  expect(response.status).toBe(200);
+
+// Export the app for testing
+module.exports = app;
+
+beforeAll(async () => {
+  // Initialize and seed the test database
+  // You can create tables and insert test data here
+
+  // Start your Express app after the database is set up
+  return new Promise((resolve) => {
+    const server = app.listen(0, () => {
+      // Attach the server instance to the app for closing later
+      app.server = server;
+      resolve();
+    });
+  });
+});
+
+afterAll(async () => {
+  // Close the test database and stop the Express app after tests
+  return new Promise((resolve) => {
+    db.close(() => {
+      app.server.close(() => {
+        resolve();
+      });
+    });
+  });
 });
 
 
