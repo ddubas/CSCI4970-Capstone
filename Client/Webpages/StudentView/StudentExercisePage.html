@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
-    <script> src = "/Client/Script/dragging.js"</script>
-    <script src="https://unpkg.com/adi-draganddrop@1.0.1"></script>
 </head>
 
 <body onload="init()">
@@ -77,25 +75,22 @@
                 <div class="answerBox">
                 </div>
             </div>
-            <div class="answerContainer" id="dragparent">
+            <div class="answerContainer" >
                 <div class="optionName">
-                    <p>
                         Options
-                    </p>
                 </div>
-                <div class="answerBox">
+                <div class="answerBox" id="dragparent">
                     <div class="optionBoxs">
-                        <p>O(n)</p>
+                        O(n)
                     </div>
                     <div class="optionBoxs">
-                        <p>On^2</p>
+                        On^2
                     </div>
                     <div class="optionBoxs">
-                        <p>O LOG(n)</p>
-                    </div>
+                        O LOG(n)
+                    </div> 
                 </div>
             </div>
-
             <div class="hintBox">
                 <p>Hint:</p>
             </div>
@@ -109,9 +104,10 @@
                 <button type="button" class="btn btn-primary">Next</button>
             </div>
         </div>
-
+        
 
     </div>
+    <script type="module" src = "../../Scripts/dragging.ts"> </script>
 </body>
 
 </html>
