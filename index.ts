@@ -6,6 +6,7 @@ const pool = require("./Server/data/db")
 const upload = require('./Server/upload/upload');
 const studentRoute = require('./Server/routes/student');
 const teacherRoute = require('./Server/routes/teacher');
+const fs = require('fs');
 dotenv.config();
 
 const app: Express = express();
@@ -15,7 +16,7 @@ app.use(express.json()); // => req.body
 // Set up static file serving for the 'Client' directory
 app.use(express.static(path.join(__dirname, 'Client')));
 
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 
@@ -108,12 +109,37 @@ app.delete("/user/delete/:id", async (req, res) => {
   }
 });
 
-// Set up a route for file uploads
-app.post("/upload", upload.single('file'), (req, res) => {
-  // Handle the uploaded file
-  //console.log(req.file)
-  res.json({ message: 'File uploaded successfully!' });
-});
+//Route for file uploads
+app.post("/upload", upload.any(), (req, res) =>{
+    //Handle the uploaded file
+    //console.log(req.body)
+    
+    //Declare variables
+    const file = req.body.file
+    const hint = req.body.hint
+    const exnum = req.body.exnum
+    const answer = req.body.answer
+    
+    //Convert file to string for database
+    const fileLocation = './Server/upload/storage/' + file
+    const buffer = fs.readFileSync(fileLocation)
+    const codeseg = buffer.toString();
+  
+    //Insert records to exercise table
+    try{
+      const newEx = pool.query(
+        "INSERT INTO exercises (codeseg, hint, answer, exnum) VALUES ($1, $2, $3, $4)",
+        [codeseg, hint, answer, exnum]
+        );
+    } catch (err: any) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      } else {
+        console.log("An unknown error occurred:", err);
+      }
+    }
+    res.json({ message: 'File uploaded successfully!', codeseg });
+  });
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
