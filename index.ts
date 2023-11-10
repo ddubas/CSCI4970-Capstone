@@ -60,13 +60,25 @@ app.post('/user/login', async (req, res) => {
 // Insert a user
 app.post("/user/add", async (req, res) => {
   try {
-    const { username, password, isteacher } = req.body;
+    const { username, password, boolIsTeacher, email } = req.body;
     const newUser = await pool.query(
-      "INSERT INTO users (username, password, isteacher) VALUES ($1, $2, $3) RETURNING *",
-      [username, password, isteacher]
+      "INSERT INTO users (username, password, isteacher, email) VALUES ($1, $2, $3, $4) RETURNING *",
+      [username, password, boolIsTeacher, email]
     );
-    res.json(newUser.rows[0]); //Shows the json of the newly created user
 
+    const insertedUser = newUser.rows[0];
+      if( newUser.rows.length === 1) {
+          console.log("User Successfully added.");
+          if (insertedUser.isteacher === true) {
+            console.log("Redirecting to teacher page");
+            return res.redirect('/Teacher/Home'); // Redirect to the teacher home page
+          } else {
+            console.log("Redirecting to student page");
+            res.redirect('/Student/Home'); // Redirect to the student home page
+          }
+      } else {
+          console.log("Unable to add a new user.")
+      }
   } catch (err: any) {
     if (err instanceof Error) {
       console.log(err.message);

@@ -21,28 +21,45 @@
         </span>
     </header>
     <div class="layoutBox">
-        <form action="" class="submittion" methood = "post">
+        <form action="" class="submittion" id="register-form" methood = "post">
+            <div class = "submitBox">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username">
+            </div>
             <div class = "submitBox">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="" id="">
+                <input type="email" class="form-control" name="email" id="email">
             </div>
             <div class = "submitBox">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="" id="">
+                <input type="password" class="form-control" name="password" id="password">
             </div>
             <div class = "submitBox">
                 <label for="passwordConfirm">Confirm Password</label>
-                <input type="password" class="form-control" name="" id="">
+                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm">
+            </div>
+            <div class = "submitBox">
+                <div class="form-check-inline">
+                    <label for="passwordConfirm">Are you a teacher?</label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio1" name="isTeacher" value="yes" checked>Yes
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio2" name="isTeacher" value="no">No
+                    </label>
+                  </div>
             </div>
             <div>
-                <button type = "submit" class = "btn btn-primary">
-                    Register
-                </button>
+                <button type = "submit" class = "btn btn-primary">Register</button>
                 <a href="/forgotPassword" class="btn btn-secondary">Forgot Password</a>
             </div>
         </form>
 
     </div>
-    
+    <script src="../Scripts/Register.js"></script>
 </body>
 </html>
