@@ -6,7 +6,7 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
 // Example route
-app.get('/', (req, res) => {
+app.get('/', (_, res: Express.Response) => {
   res.send('Hello, World!');
 });
 
