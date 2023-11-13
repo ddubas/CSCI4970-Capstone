@@ -7,6 +7,7 @@ const upload = require('./Server/upload/upload');
 const studentRoute = require('./Server/routes/student');
 const teacherRoute = require('./Server/routes/teacher');
 const fs = require('fs');
+
 dotenv.config();
 
 const app: Express = express();
@@ -24,6 +25,7 @@ app.use(loginRoute);
 app.use(studentRoute);
 app.use(teacherRoute);
 
+export default app;
 // Get a user
 app.post('/user/login', async (req, res) => {
   try {
@@ -155,4 +157,6 @@ app.post("/upload", upload.any(), (req, res) =>{
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+
+  
 });
