@@ -59,6 +59,9 @@ app.post('/user/login', async (req, res) => {
   }
 });
 
+app.get('/teacher/home', async (req, res) => {
+
+});
 // Insert a user
 app.post("/user/add", async (req, res) => {
   try {
