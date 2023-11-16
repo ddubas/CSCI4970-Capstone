@@ -16,7 +16,7 @@ app.use(express.json()); // => req.body
 // Set up static file serving for the 'Client' directory
 app.use(express.static(path.join(__dirname, 'Client')));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 
@@ -156,3 +156,4 @@ app.post("/upload", upload.any(), (req, res) =>{
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
+module.exports = app;

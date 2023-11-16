@@ -1,68 +1,118 @@
+// server/routes/login.test.js
+
 const request = require('supertest');
-const app = require('./express-app.ts'); // Import your Express app instance
-const db = require('./test-database.ts'); // Import the test database setup
+const { performLogin } = require('./index.ts');
+// api.test.ts
 
-// Your test code that uses 'app' and 'db'
-// Test the Express app
+
+
+// Mock the pool object in data/db.js
+jest.mock('/home/jwilliams/CSCI4970-Capstone/Server/data/db.ts', () => ({
+  pool: {
+    query: jest.fn(),
+  },
+}));
+
+// Mock the 'text-encoding' module
+jest.mock('text-encoding');
+
+// Mock the express app
+const app = require('./index.ts'); 
+it('should login successfully', async () => {
+  const responsePromise = request(app).post('/user/login').send({ /* your data */ });
+
+  // Using .then() to handle the promise
+  responsePromise.then(response => {
+    // Handle the response here
+    console.log(response.statusCode);
+    console.log(response.body);
+  }).catch(error => {
+    // Handle errors if any
+    console.error(error);
+  });
+
+  // ... rest of the test
+});
+
+
+
 describe('Express App', () => {
-  // Define a test case for a specific route
-  it('should return "Hello, World!" from the root route', async () => {
-    const response = await request(app).get('/');
-    expect(response.status).toBe(200);
-    expect(response.text).toBe('Hello, World!');
-  });
-});
-
-  // Add more test cases for other routes and scenarios
-
-// Test the database
-describe('Database', () => {
-  // Define a test case to check if a table contains data
-  it('should have data in the "users" table', (done) => {
-    db.all('SELECT * FROM users', [], (err: Error | null, rows: any[]) => {
-      if (err) {
-        throw err;
-      }
-      expect(rows.length).toBeGreaterThan(0);
-      done();
+  // Test login route
+  it('should login successfully', async () => {
+    // Mock the behavior of the pool.query method
+    require('../Server/data/db.ts').pool.query.mockResolvedValueOnce({
+      rows: [{ username: 'testuser', password: 'testpassword' }],
     });
+
+    const response = await request(app)
+      .post('/user/login')
+      .send({ username: 'testuser', password: 'testpassword' });
+
+    expect(response.statusCode).toBe(200);
+    // Add more assertions based on your application's behavior
   });
 
+  // Test add user route
+  it('should add a new user successfully', async () => {
+    // Mock the behavior of the pool.query method for insertion
+    require('../Server/data/db.ts').pool.query.mockResolvedValueOnce({
+      rows: [{ username: 'newuser', password: 'newpassword', isteacher: false, email: 'newuser@example.com' }],
+    });
 
-// Export the app for testing
-module.exports = app;
-
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:');
-
-// Create tables and insert test data
-db.serialize(() => {
-  // Create a "users" table
-  db.run("CREATE TABLE users (id INT, username TEXT, email TEXT)");
-
-  // Insert test data into the "users" table
-  const insertUser = db.prepare("INSERT INTO users VALUES (?, ?, ?)");
-  insertUser.run(1, 'user1', 'user1@example.com');
-  insertUser.run(2, 'user2', 'user2@example.com');
-  insertUser.finalize(); // Finalize the prepared statement
-
-  // Create other tables and insert more test data as needed
-});
-
-// Export the database for use in your tests
-module.exports = db;
-
-
-afterAll(async () => {
-  // Close the test database and stop the Express app after tests
-  return new Promise<void>((resolve) => {
-    db.close(() => {
-      app.server.close(() => {
-        resolve();
+    const response = await request(app)
+      .post('/user/add')
+      .send({
+        username: 'newuser',
+        password: 'newpassword',
+        boolIsTeacher: false,
+        email: 'newuser@example.com',
       });
+
+    expect(response.statusCode).toBe(200);
+    // Add more assertions based on your application's behavior
+  });
+
+  // Test update user route
+  it('should update a user successfully', async () => {
+    // Mock the behavior of the pool.query method for updating
+    require('/home/jwilliams/CSCI4970-Capstone/Server/data/db.ts').pool.query.mockResolvedValueOnce({
+      rows: [{ username: 'updateduser', password: 'updatedpassword', isteacher: true }],
     });
+
+    const response = await request(app)
+      .put('/user/update/1') // Update with a valid user ID
+      .send({ username: 'updateduser', password: 'updatedpassword', isteacher: true });
+
+    expect(response.statusCode).toBe(200);
+    // Add more assertions based on your application's behavior
+  });
+
+  // Test delete user route
+  it('should delete a user successfully', async () => {
+    // Mock the behavior of the pool.query method for deletion
+    require('/home/jwilliams/CSCI4970-Capstone/Server/data/db.ts').pool.query.mockResolvedValueOnce({});
+
+    const response = await request(app).delete('/user/delete/1'); // Update with a valid user ID
+
+    expect(response.statusCode).toBe(200);
+    // Add more assertions based on your application's behavior
+  });
+
+  // Test file upload route
+  it('should upload a file successfully', async () => {
+    // Mock the behavior of the pool.query method for file upload
+    require('/home/jwilliams/CSCI4970-Capstone/Server/data/db.ts').pool.query.mockResolvedValueOnce({});
+
+    const response = await request(app)
+      .post('/upload')
+      .attach('file', 'path/to/testfile.txt') // Update with the path to your test file
+      .field('hint', 'test hint')
+      .field('exnum', '1')
+      .field('answer', 'test answer');
+
+    expect(response.statusCode).toBe(200);
+    // Add more assertions based on your application's behavior
   });
 });
 
-
-});
+export {}
