@@ -16,7 +16,7 @@ app.use(express.json()); // => req.body
 // Set up static file serving for the 'Client' directory
 app.use(express.static(path.join(__dirname, 'Client')));
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3042;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 

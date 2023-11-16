@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "nodemon index.ts",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
