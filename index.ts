@@ -155,6 +155,19 @@ app.post("/upload", upload.any(), (req, res) =>{
     res.json({ message: 'File uploaded successfully!', codeseg });
   });
 
+  app.post('/user/login', async (req, res) => {
+    try {
+      const { username} = req.body;
+      // Query the database for the user with the submitted username
+      const userQuery = await pool.query('SELECT sections FROM users WHERE username = $1', [username]);
+  
+      // Check if a user with the submitted username exists
+      res.send(userQuery)
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 
