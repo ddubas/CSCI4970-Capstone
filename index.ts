@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import path from 'path';
+import path, { parse } from 'path';
 const loginRoute = require('./Server/routes/login');
-const pool = require("./Server/data/db")
+const pool = require("./Server/data/db");
 const upload = require('./Server/upload/upload');
 const studentRoute = require('./Server/routes/student');
 const teacherRoute = require('./Server/routes/teacher');
@@ -17,7 +17,7 @@ app.use(express.json()); // => req.body
 // Set up static file serving for the 'Client' directory
 app.use(express.static(path.join(__dirname, 'Client')));
 
-const port = process.env.PORT || 3042;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 
@@ -128,11 +128,18 @@ app.post("/upload", upload.any(), (req, res) =>{
     //Handle the uploaded file
     //console.log(req.body)
     
+  console.log(req.body)
+
     //Declare variables
     const file = req.body.file
     const hint = req.body.hint
     const exnum = req.body.exnum
     const answer = req.body.answer
+
+    console.log(file)
+    console.log(hint)
+    console.log(exnum)
+    console.log(answer)
     
     //Convert file to string for database
     const fileLocation = './Server/upload/storage/' + file
@@ -155,14 +162,35 @@ app.post("/upload", upload.any(), (req, res) =>{
     res.json({ message: 'File uploaded successfully!', codeseg });
   });
 
-  app.post('/user/login', async (req, res) => {
+  //Code segment parser
+  app.get('/user/:userid/exercise/:exerid', async (req, res) => {
     try {
-      const { username} = req.body;
-      // Query the database for the user with the submitted username
-      const userQuery = await pool.query('SELECT sections FROM users WHERE username = $1', [username]);
-  
-      // Check if a user with the submitted username exists
-      res.send(userQuery)
+      const { userid, exerid } = req.params;
+      // Query the database for the user
+      const userQuery = await pool.query(
+        "SELECT users.userid, assignment.exerid, exercises.codeseg, exercises.hint, exercises.answer, exercises.exnum FROM assignment JOIN users ON users.userid = assignment.userid JOIN exercises ON exercises.exerid = assignment.exerid WHERE users.userid = $1 AND exercises.exerid = $2", [userid, exerid]);
+
+      // Check if a user returns exercises
+      if (userQuery.rows.length === 1) {
+        const user = userQuery.rows[0];
+        console.log("Exercise exists for user")
+      } else {
+        console.log("No exercise exists for user")
+      }
+      
+        //console.log(userQuery.rows[0])
+
+      const codesegFromDB = userQuery.rows[0].codeseg;
+      // Split the string based on \r\n
+      const lines = codesegFromDB.split(/\r?\n/);
+
+      for (let i = 0; i < lines.length; i++) {
+        console.log(lines[i] + "YES")
+      }
+      
+
+      res.send("done")
+
     } catch (err) {
       console.error(err);
     }
