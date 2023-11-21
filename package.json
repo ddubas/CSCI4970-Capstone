@@ -4,7 +4,8 @@
   "description": "Contains the capstone repo",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --exec npx ts-node ./index.ts"
+    "start": "nodemon --exec npx ts-node ./index.ts",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
