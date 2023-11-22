@@ -201,4 +201,17 @@ app.listen(port, () => {
 
   
 });
+
+app.get('/user/home', (req, res)=>{
+  const { username } = req.body;
+    pool.query(`Select sections from users`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    pool.end;
+})
+
+
+
 module.exports = app;
