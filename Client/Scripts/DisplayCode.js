@@ -2,23 +2,22 @@
     // event.preventDefault();
     console.log("Running")
     // const username = document.getElementById('username').value;
-    const course1Name = document.getElementById("courseID").innerHTML;
-    
+    let course1Name = document.getElementById("courseID");
+    let dataStore
     try {
+        console.log("Running")
         const response = await fetch('/user/home', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ course1Name }),
-        });
-    
-        if (response.ok) {
-            console.log("SUCCESS!!");
-            course1Name = response.body
-        } else {
-            console.log("Response didn't go through");
-        }
+        })
+            .then(res => {return res.json()})
+            .then(data => dataStore = data)
+
+            console.log(dataStore)
+            course1Name.innerHTML = dataStore[0].sections;
+            return
     } catch (error) {
         console.error('Error:', error);
     }
