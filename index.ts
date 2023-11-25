@@ -7,6 +7,7 @@ const upload = require('./Server/upload/upload');
 const studentRoute = require('./Server/routes/student');
 const teacherRoute = require('./Server/routes/teacher');
 const fs = require('fs');
+const ejs = require('ejs');
 
 dotenv.config();
 
@@ -178,18 +179,20 @@ app.post("/upload", upload.any(), (req, res) =>{
         console.log("No exercise exists for user")
       }
       
-        //console.log(userQuery.rows[0])
-
+      //get codseg from db
       const codesegFromDB = userQuery.rows[0].codeseg;
+
       // Split the string based on \r\n
       const lines = codesegFromDB.split(/\r?\n/);
 
-      for (let i = 0; i < lines.length; i++) {
-        console.log(lines[i] + "YES")
-      }
-      
+      //read Exercise View html
+      const htmlTemplate = fs.readFileSync('Client/Webpages/StudentView/StudentExercisePage.html','utf8');
 
-      res.send("done")
+      //render HTML with array values
+      const renderedHTML = ejs.render(htmlTemplate, { lineValues: lines });
+      
+      //send the HTML
+      res.send(renderedHTML);
 
     } catch (err) {
       console.error(err);

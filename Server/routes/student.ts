@@ -3,7 +3,7 @@ import path from 'path';
 
 const router = Router();
 
-router.get('/Student/Home', (req: Request, res: Response) => {
+router.get('/Student/:userid/Home', (req: Request, res: Response) => {
     // Use res.sendFile() to send the HTML file
     res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentHomePage.html'));
   });

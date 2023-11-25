@@ -43,6 +43,12 @@
                 <p>Exercise</p>
             </div>
             <div class="codeDisplayBox">
+                <span>
+                    <% lineValues.forEach(values => { %>
+                      <p><%= values %></p>
+                    <% }); %>
+                </span>
+                
                 <span class="line">
                     <p>Line 1</p>
                 </span>
