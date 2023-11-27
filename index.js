@@ -47,10 +47,10 @@ app.post('/user/login', async (req, res) => {
     //const userQuery = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
     const userQuery = await pool.query(
       "SELECT users.userid, users.username, users.password, users.isteacher, assignment.exerid FROM assignment JOIN users ON users.userid = assignment.userid JOIN exercises ON exercises.exerid = assignment.exerid WHERE username = $1",  [username]);
-    
+    // CURRENT PROBLEM: The query only returns a user if they have exercises assigned to them from the assignment table
     //Create user record
     const user = userQuery.rows[0];
-
+      console.log(user);
     //Check if record is in database and a valid password
     if (userQuery.rows.length === 1 && user.password === password) {
       

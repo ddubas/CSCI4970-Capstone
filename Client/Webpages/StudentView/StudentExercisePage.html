@@ -24,10 +24,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                        <a class="nav-link" href="#">Courses</a>
-                        <a class="nav-link" href="#">Examples</a>
-                        <a class="nav-link">Profile</a>
+                        <a class="nav-link active" href="/Student/Home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/Student/Courses">Courses</a>
+                        <a class="nav-link" href="/Student/Grades">Your Grades</a>
+                        <a class="nav-link" href="/Student/Assignments">Assignments</a>
+                        <a class="nav-link" href="/Student/Announcements">Announcements</a>
                     </div>
                     <div class="viewBadge">
                         <span class="badge badge-success">Student View</span>
@@ -44,11 +45,13 @@
             </div>
             <div class="codeDisplayBox">
                 <span>
-                    <% lineValues.forEach(values => { %>
-                      <p><%= values %></p>
-                    <% }); %>
+                    <% lineValues.forEach(values=> { %>
+                        <p>
+                            <%= values %>
+                        </p>
+                        <% }); %>
                 </span>
-                
+
                 <span class="line">
                     <p>Line 1</p>
                 </span>
@@ -76,16 +79,16 @@
                     <p>Line 8</p>
                 </div>
             </div>
-            <div class="answerContainer" >
+            <div class="answerContainer">
                 <div class="answerName">
                     <p>Answer</p>
                 </div>
-                <div class="answerBox"id="answerDrop">
+                <div class="answerBox" id="answerDrop">
                 </div>
             </div>
-            <div class="answerContainer" >
+            <div class="answerContainer">
                 <div class="optionName">
-                        Options
+                    Options
                 </div>
                 <div class="answerBox" id="dragParent">
                     <div class="optionBoxs">
@@ -96,13 +99,13 @@
                     </div>
                     <div class="optionBoxs">
                         O LOG(n)
-                    </div> 
+                    </div>
                 </div>
             </div>
-            <script> 
-                dragula([document.getElementById("dragParent"), document.getElementById("answerDrop")], {copy: true}, {revertOnSpill: true});
-                dragula([document.getElementById("answerDrop")], {removeOnSpill: true})
-        
+            <script>
+                dragula([document.getElementById("dragParent"), document.getElementById("answerDrop")], { copy: true }, { revertOnSpill: true });
+                dragula([document.getElementById("answerDrop")], { removeOnSpill: true })
+
                 // Add a custom drop event handler (optional)
                 drake.on('drop', function (el, target, source, sibling) {
                     // Custom code to handle the drop event
@@ -122,7 +125,7 @@
                 <button type="button" class="btn btn-primary">Next</button>
             </div>
         </div>
-        
+
 
     </div>
     <script src="../../Scripts/"></script>
