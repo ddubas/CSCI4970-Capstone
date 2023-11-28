@@ -46,8 +46,8 @@ app.post('/user/login', async (req, res) => {
     // Query the database for the user with the submitted username
     //const userQuery = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
     const userQuery = await pool.query(
-      "SELECT users.userid, users.username, users.password, users.isteacher, assignment.exerid FROM assignment JOIN users ON users.userid = assignment.userid JOIN exercises ON exercises.exerid = assignment.exerid WHERE username = $1",  [username]);
-    // CURRENT PROBLEM: The query only returns a user if they have exercises assigned to them from the assignment table
+      "SELECT users.userid, users.username, users.password, users.isteacher, assignment.exerid FROM users LEFT JOIN assignment ON users.userid = assignment.userid LEFT JOIN exercises ON exercises.exerid = assignment.exerid WHERE username = $1", [username]);
+
     //Create user record
     const user = userQuery.rows[0];
       console.log(user);
