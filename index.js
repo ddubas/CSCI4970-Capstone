@@ -73,10 +73,10 @@ app.post('/user/login', async (req, res) => {
       //Route users accordingly
       if (user.isteacher === true) {
         console.log("Redirecting to teacher page");
-        return res.redirect('/Teacher/Home'); // Redirect to the teacher home page
+        return res.redirect('/Teacher/Assignments'); // Redirect to the teacher home page
       } else {
         console.log("Redirecting to student page");
-        return res.redirect('/Student/Home'); // Redirect to the student home page
+        return res.redirect('/Student/Assignments'); // Redirect to the student home page
       }
 
     } else {

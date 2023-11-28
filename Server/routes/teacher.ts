@@ -17,7 +17,7 @@ router.get('/Teacher/Uploads', (req: Request, res: Response) => {
   });
   
   router.get('/Teacher/Assignments', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherAssignmentPage'));
+    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherAssignmentPage.html'));
   });
 
   router.get('/Teacher/Courses', (req: Request, res: Response) => {

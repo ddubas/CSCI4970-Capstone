@@ -15,10 +15,10 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     
         if (response.ok) {
             console.log("SUCCESS!!");
-            if (response.url.endsWith('/Teacher/Home')) {
-                window.location.href = '/Teacher/Home';
-            } else if (response.url.endsWith('/Student/Home')) {
-                window.location.href = '/Student/Home';
+            if (response.url.endsWith('/Teacher/Assignments')) {
+                window.location.href = '/Teacher/Assignments';
+            } else if (response.url.endsWith('/Student/Assignments')) {
+                window.location.href = '/Student/Assignments';
             }
         } else {
             console.log("Response didn't go through");
