@@ -22,24 +22,24 @@
 <body onload="">
     <div class="cont">
         <!-- Combined Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Algo Pro</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        <div class="homeBar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="/login">Algo Pro</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="/Teacher/Home">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="/Teacher/Courses">Courses</a>
-                    <a class="nav-link" href="/Teacher/StudentProfile">Profile</a>
-                    <a class="nav-link" href="/Teacher/Announcements">Announcements</a>
-                </div>
-                <div class="viewBadge">
-                    <span class="badge badge-danger">Teacher View</span>
-                </div>
-            </div>
-        </nav>
+              </button>
+              <div class="navbar-nav">
+                <a class="nav-link" href="/Teacher/Assignments">Home</a>
+                <a class="nav-link active" href="/Teacher/Courses">Courses<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/Teacher/Students">Students </a>
+                <a class="nav-link" href="/Teacher/Announcements">Announcements</a>
+              </div>
+              <div class="viewBadge">
+                <span class="badge badge-danger">Teacher View</span>
+              </div>
+            </nav>
+          </div>
 
         <div class="courseList">
             <div class="individualCourse card1">

@@ -20,7 +20,6 @@
 
 async function displayAssignments(event){
     let temp = [document.getElementById("assignment1"), document.getElementById("assignment2"), document.getElementById("assignment3")]
-    let dataStore
     try {
         const response = await fetch('/user/assignments', {
             method: 'GET',

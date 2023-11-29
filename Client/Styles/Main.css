@@ -106,6 +106,7 @@ body {
 }
 
 .studentListBox {
+    margin-top: 1rem;
     height: 15rem;
     width: 185rem;
     position: relative;
@@ -289,4 +290,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .addAnnouncementButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
   }

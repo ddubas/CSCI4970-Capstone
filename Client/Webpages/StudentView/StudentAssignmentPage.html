@@ -17,16 +17,14 @@
     <!-- Combined Navbar -->
     <div class="homeBar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Algo Pro</a>
+        <a class="navbar-brand" href="/login">Algo Pro</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-nav">
           <a class="nav-link active" href="/Student/Home">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-link" href="/Student/Courses">Courses</a>
           <a class="nav-link" href="/Student/Grades">Your Grades</a>
-          <a class="nav-link" href="/Student/Assignments">Assignments</a>
           <a class="nav-link" href="/Student/Announcements">Announcements</a>
         </div>
         <div class="viewBadge">
@@ -42,29 +40,58 @@
 
     <!-- Assignment List -->
     <div class="assignmentList">
-      <button type="button" class="collapsible" id="assignment1">Open Section 1</button>
-      <div class="content">
-        <p id="desc1">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <div class = "startAssignmentBtn">
-          <a href="" class="btn btn-primary">Start Assignment</a>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                <p id="assignment1" class="textCenter">Collapsible Group Item #1</p> 
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <p id="desc1">Anim pariatur cliche reprehenderit, enim eiusmod high life</p>
+              <a href="" class="btn btn-primary">Start Assignment</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <button type="button" class="collapsible" id="assignment2">Open Section 2</button>
-      <div class="content">
-        <p class="desc2">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <div class = "startAssignmentBtn">
-          <a href="" class="btn btn-primary">Start Assignment</a>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                <p id="assignment2" class="textCenter">Collapsible Group Item #2</p> 
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <p id="desc2">Anim pariatur cliche reprehenderit, enim eiusmod high life</p>
+              <a href="" class="btn btn-primary">Start Assignment</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <button type="button" class="collapsible" id="assignment3">Open Section 3</button>
-      <div class="content">
-        <p class="desc3">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <div class = "startAssignmentBtn">
-          <a href="" class="btn btn-primary">Start Assignment</a>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+                <p id="assignment3">Collapsible Group Item #3</p> 
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              <p id="desc3">Anim pariatur cliche reprehenderit, enim eiusmod high life</p>
+              <a href="" class="btn btn-primary">Start Assignment</a> 
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Sticky Footer -->
   <div class="footer">
@@ -72,29 +99,13 @@
   </div>
 
   <!-- Include jQuery, Popper.js, and Bootstrap JS at the end of the body for better performance -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3."></script>
-  <script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-    
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-    </script>
     <script>displayCourseName()</script>
     <script>displayAssignments()</script>
     <script>displayDescription()</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
