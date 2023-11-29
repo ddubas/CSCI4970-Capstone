@@ -19,11 +19,15 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
                 window.location.href = '/Teacher/Assignments';
             } else if (response.url.endsWith('/Student/Assignments')) {
                 window.location.href = '/Student/Assignments';
+            } else if (response.url.endsWith('/login')){
+                alert('User not found or invalid password')
+                window.location.href = '/login';
             }
         } else {
             console.log("Response didn't go through");
         }
     } catch (error) {
+        console.log('NO')
         console.error('Error:', error);
     }
     });

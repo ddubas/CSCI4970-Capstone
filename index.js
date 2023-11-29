@@ -81,6 +81,7 @@ app.post('/user/login', async (req, res) => {
 
     } else {
       console.log("User not found or invalid password");
+      return res.redirect('/login');
     }
 
   } catch (err) {
