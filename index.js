@@ -233,9 +233,29 @@ app.listen(port, () => {
 
 });
 
-app.get('/user/home', (req, res) => {
+app.get('/user/assignmentsCourse', (req, res) => {
   const { username } = req.body;
-  pool.query(`Select sections from users`, (err, result) => {
+  pool.query(`SELECT course FROM users WHERE users.userid = 32`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    }
+  });
+  pool.end;
+})
+
+app.get('/user/assignments', (req, res) => {
+  const { username } = req.body;
+  pool.query(`SELECT assignmentid FROM course`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    }
+  });
+  pool.end;
+})
+
+app.get('/user/assignmentsDesc', (req, res) => {
+  const { username } = req.body;
+  pool.query(`SELECT description FROM assignment`, (err, result) => {
     if (!err) {
       res.send(result.rows);
     }
