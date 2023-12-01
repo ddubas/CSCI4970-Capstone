@@ -1,42 +1,42 @@
-import express, { Express, Request, Response, Router } from 'express';
+import express, { Request, Response, Router } from 'express';
 import path from 'path';
 
 const router = Router();
 
 router.get('/Teacher/Uploads', (req: Request, res: Response) => {
-    // Use res.sendFile() to send the HTML file
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/RegisterPage.html'));
-  });
-  
-  router.get('/Teacher/AddCourse', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherAddCoursePage.html'));
-  });
-  
-  router.get('/Teacher/Announcements', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherAnnouncementPage.html'));
-  });
-  
-  router.get('/Teacher/Assignments', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherAssignmentPage.html'));
-  });
+  res.render('RegisterPage');
+});
 
-  router.get('/Teacher/Courses', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherCoursePage.html'));
-  });
+router.get('/Teacher/AddCourse', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherAddCoursePage');
+});
 
-  router.get('/Teacher/Home', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherHomePage.html'));
-  });
+router.get('/Teacher/Announcements', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherAnnouncementPage');
+});
 
-  router.get('/Teacher/Grades', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherStudentGradePage.html'));
-  });
+router.get('/Teacher/Assignments', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherAssignmentPage');
+});
 
-  router.get('/Teacher/Students', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherStudentPage.html'));
-  });
+router.get('/Teacher/Courses', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherCoursePage');
+});
 
-  router.get('/Teacher/StudentProfile', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/TeacherStudentProfilePage.html'));
-  });
-  module.exports = router;
+router.get('/Teacher/Home', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherHomePage');
+});
+
+router.get('/Teacher/Grades', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherStudentGradePage');
+});
+
+router.get('/Teacher/Students', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherStudentPage');
+});
+
+router.get('/Teacher/StudentProfile', (req: Request, res: Response) => {
+  res.render('TeacherView/TeacherStudentProfilePage');
+});
+
+module.exports = router;

@@ -25,6 +25,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "Client/Styles/")));
 
+app.set('views', path.join(__dirname, 'Client/views'));
+app.set('view engine', 'ejs');
+
 app.use(loginRoute);
 app.use(studentRoute);
 app.use(teacherRoute);
@@ -62,7 +65,7 @@ app.post('/user/login', async (req, res) => {
         req.session.authenticated = true;
         req.session.user = {
           userid: user.userid,
-          exerid: user.exerid //modify later
+          exerid: user.exerid
         }
         console.log(req.session.user)
 
@@ -120,7 +123,7 @@ app.post("/user/add", async (req, res) => {
   }
 });
 
-// Update a user
+// Update a user ( Can be used for changing the password for a user)
 app.put("/user/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -215,55 +218,42 @@ app.get('/user/exercise', async (req, res) => {
     const lines = codesegFromDB.split(/\r?\n/);
 
     //read Exercise View html
-    const htmlTemplate = fs.readFileSync('Client/Webpages/StudentView/StudentExercisePage.html', 'utf8');
-
-    //render HTML with array values
-    const renderedHTML = ejs.render(htmlTemplate, { lineValues: lines });
-
-    //send the HTML
-    res.send(renderedHTML);
+    // const htmlTemplate = fs.readFileSync('Client/Webpages/StudentView/StudentExercisePage.html', 'utf8');
+    // const renderedHTML = ejs.render(htmlTemplate, { lineValues: lines });
+    // res.send(renderedHTML);
 
   } catch (err) {
     console.error(err);
   }
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+app.get('/user/assignments', async (req, res) => {
+  try {
+    console.log("Entered the API call for /user/assignments");
+    let userID = req.session.user.userid;
+    let exerID = req.session.user.exerid;
 
+    const assignmentQuery = await pool.query("SELECT * FROM assignment WHERE assignment.userid = $1 AND assignment.exerid = $2", [userID, exerID]);
+    const assignments = assignmentQuery.rows;
+    console.log("My assignments: " + JSON.stringify(assignments));
 
+    // Render only the assignment part of the page
+    res.render('StudentView/StudentAssignmentPage', { assignments }, (err, html) => {
+      if (err) {
+        console.error("Error rendering assignments:", err);
+        res.status(500).send("Internal Server Error");
+      } else {
+        res.send(html);
+      }
+    });
+  } catch (error) {
+    console.error("Error processing assignment data:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
-app.get('/user/assignmentsCourse', (req, res) => {
-  const { username } = req.body;
-  pool.query(`SELECT course FROM users WHERE users.userid = 32`, (err, result) => {
-    if (!err) {
-      res.send(result.rows);
-    }
-  });
-  pool.end;
-})
-
-app.get('/user/assignments', (req, res) => {
-  const { username } = req.body;
-  pool.query(`SELECT assignmentid FROM course`, (err, result) => {
-    if (!err) {
-      res.send(result.rows);
-    }
-  });
-  pool.end;
-})
-
-app.get('/user/assignmentsDesc', (req, res) => {
-  const { username } = req.body;
-  pool.query(`SELECT description FROM assignment`, (err, result) => {
-    if (!err) {
-      res.send(result.rows);
-    }
-  });
-  pool.end;
-})
-
-
+app.listen(port, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+});
 
 module.exports = app;

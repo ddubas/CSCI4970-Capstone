@@ -1,31 +1,25 @@
-import express, { Express, Request, Response, Router } from 'express';
-import path from 'path';
+import { Request, Response, Router } from 'express';
 
 const router = Router();
 
 router.get('/Student/Home', (req: Request, res: Response) => {
-    // Use res.sendFile() to send the HTML file
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentHomePage.html'));
-  });
-  
-  router.get('/Student/Announcements', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentAnnouncementPage.html'));
-  });
-  
-  router.get('/Student/Assignments', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentAssignmentPage.html'));
-  });
+  res.render('StudentView/StudentHomePage');
+});
 
-  router.get('/Student/Courses', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentCoursePage.html'));
-  });
+router.get('/Student/Announcements', (req: Request, res: Response) => {
+  res.render('StudentView/StudentAnnouncementPage');
+});
 
-  router.get('/Student/Exercises', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentExercisePage.html'));
-  });
+router.get('/Student/Assignments', (req: Request, res: Response) => {
+  res.render('StudentView/StudentAssignmentPage');
+});
 
-  router.get('/Student/Grades', (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/StudentView/StudentGradePage.html'));
-  });  
+router.get('/Student/Exercises', (req: Request, res: Response) => {
+  res.render('StudentView/StudentExercisePage');
+});
 
-  module.exports = router;
+router.get('/Student/Grades', (req: Request, res: Response) => {
+  res.render('StudentView/StudentGradePage');
+});
+
+module.exports = router;

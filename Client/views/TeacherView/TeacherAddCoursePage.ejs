@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="../../Styles/Main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="cont">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/Teacher/Assignments">Algo Pro</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/Teacher/Assignments">Home</a>
+                    <a class="nav-link" href="/Teacher/Courses">Courses</a>
+                    <a class="nav-link active" href="/Teacher/Students">Students</a>
+                    <a class="nav-link" href="/Teacher/Announcements">Announcements</a>
+                </div>
+                <div class="viewBadge">
+                    <span class="badge badge-danger">Teacher View</span>
+                </div>
+            </div>
+        </nav>
+        <div class="addCourseBox">
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Course Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Name of the Coures" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Add Student</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Enter student's username" required>
+                </div>
+                <div class="addStudentButton">
+                    <input class="btn btn-primary" type="submit" value="Add" id="addStudent">
+                </div>
+            </form>
+        </div>
+        <!-- Sticky Footer -->
+        <div class="footer">
+            <p class="text-center">@2023 AlgoPro | All Rights Reserved</p>
+        </div>
+</body>
+
+</html>
