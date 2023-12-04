@@ -11,27 +11,9 @@ const teacherRoute = require('./Server/routes/teacher');
 const fs = require('fs');
 const ejs = require('ejs');
 
-
 dotenv.config();
-
 const app = express();
-
-app.use(express.json()); // => req.body
-
-// Set up static file serving for the 'Client' directory
-app.use(express.static(path.join(__dirname, 'Client')));
-
-const port = process.env.PORT || 3000;
-
-app.use(express.static(path.join(__dirname, "Client/Styles/")));
-
-app.set('views', path.join(__dirname, 'Client/views'));
-app.set('view engine', 'ejs');
-
-app.use(loginRoute);
-app.use(studentRoute);
-app.use(teacherRoute);
-
+// Use express-session middleware
 app.use(
   session({
     secret: process.env.SECRETKEY || 'backupkey',
@@ -40,6 +22,19 @@ app.use(
     cookie: { maxAge: 3600000 } // 1 hour
   })
 );
+
+app.use(express.json()); // => req.body
+app.use(express.static(path.join(__dirname, 'Client')));
+app.use(express.static(path.join(__dirname, "Client/Styles/")));
+app.set('views', path.join(__dirname, 'Client/views'));
+app.set('view engine', 'ejs');
+
+app.use(loginRoute);
+app.use(studentRoute);
+app.use(teacherRoute);
+
+// Port number
+const port = process.env.PORT || 3000;
 
 // Get a user
 app.post('/user/login', async (req, res) => {
@@ -79,7 +74,7 @@ app.post('/user/login', async (req, res) => {
         return res.redirect('/Teacher/Assignments'); // Redirect to the teacher home page
       } else {
         console.log("Redirecting to student page");
-        return res.redirect('/Student/Assignments'); // Redirect to the student home page
+        return res.redirect('/user/assignments?userid=' + user.userid + '&exerid=' + user.exerid);
       }
 
     } else {
@@ -140,22 +135,6 @@ app.put("/user/update/:id", async (req, res) => {
   }
 });
 
-// Delete a user
-app.delete("/user/delete/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const deleteUser = await pool.query("DELETE FROM users WHERE userid = $1", [id]);
-    res.json("User was successfully deleted");
-  } catch (err) {
-    if (err instanceof Error) {
-      console.log(err.message);
-    } else {
-      console.log("An unknown error occurred:", err);
-    }
-  }
-});
-
 //Route for file uploads
 app.post("/upload", upload.any(), (req, res) => {
   //Handle the uploaded file
@@ -195,7 +174,7 @@ app.post("/upload", upload.any(), (req, res) => {
   res.json({ message: 'File uploaded successfully!', codeseg });
 });
 
-//Code segment parser
+//WILL NEED TO BE REWRITTEN
 app.get('/user/exercise', async (req, res) => {
   try {
     const { userid, exerid } = req.params;
@@ -232,25 +211,20 @@ app.get('/user/assignments', async (req, res) => {
     console.log("Entered the API call for /user/assignments");
     let userID = req.session.user.userid;
     let exerID = req.session.user.exerid;
-
+  
     const assignmentQuery = await pool.query("SELECT * FROM assignment WHERE assignment.userid = $1 AND assignment.exerid = $2", [userID, exerID]);
     const assignments = assignmentQuery.rows;
-    console.log("My assignments: " + JSON.stringify(assignments));
 
-    // Render only the assignment part of the page
-    res.render('StudentView/StudentAssignmentPage', { assignments }, (err, html) => {
-      if (err) {
-        console.error("Error rendering assignments:", err);
-        res.status(500).send("Internal Server Error");
-      } else {
-        res.send(html);
-      }
-    });
+    // console.log("Assignments to be rendered:", assignments);
+
+    // Render the StudentAssignmentPage and pass the assignments variable
+    res.render('StudentView/StudentAssignmentPage', { assignments, contentType: 'assignments' });
   } catch (error) {
     console.error("Error processing assignment data:", error);
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
