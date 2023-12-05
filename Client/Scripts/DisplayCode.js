@@ -1,51 +1,10 @@
- async function displayCourseName(event){
-    let course1Name = document.getElementById("courseName");
-    let dataStore
-    try {
-        const response = await fetch('/user/assignmentsCourse', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => {return res.json()})
-            .then(data => dataStore = data)
-
-            course1Name.innerHTML = "Course: " + dataStore[0].course;
-            return
-    } catch (error) {
-        console.error('Error:', error);
-    }
-    };
-
-async function displayAssignments(event){
-    let temp = [document.getElementById("assignment1"), document.getElementById("assignment2"), document.getElementById("assignment3")]
-    try {
-        const response = await fetch('/user/assignments', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => {return res.json()})
-            .then(data => dataStore = data)
-
-            for(let i = 0; dataStore[0].assignmentid.length > i; i++){
-                // document.getElementById("assignment" + i).innerHTML = "Assignment: " + i
-                temp[i].innerHTML = "Assignment: " + dataStore[0].assignmentid[i]
-            }
-            // console.log(dataStore)
-            return
-    } catch (error) {
-        console.error('Error:', error);
-    }
-    };
-
-    async function displayDescription(event){
-        let temp = [document.getElementById("desc1"), document.getElementById("desc2"), document.getElementById("desc3")]
+    //Collects and chages the name of the course according to the course the user is assigned to in the database
+    async function displayCourseName(event){
+        let course1Name = document.getElementById("courseName");
         let dataStore
         try {
-            const response = await fetch('/user/assignmentsDesc', {
+            //Fetch statement to recieve the info from the database
+            const response = await fetch('/user/assignmentsCourse', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,14 +12,56 @@ async function displayAssignments(event){
             })
                 .then(res => {return res.json()})
                 .then(data => dataStore = data)
-    
-
-                for(let h = 0; dataStore.length > h; h++){
-                    // document.getElementById("assignment" + i).innerHTML = "Assignment: " + i
-                    temp[0].innerHTML = dataStore[0].description
-                }
+                //Chages the html title element
+                course1Name.innerHTML = "Course: " + dataStore[0].course;
                 return
         } catch (error) {
             console.error('Error:', error);
         }
         };
+
+
+    //Collects all the Assignments from the given course in the database
+    async function displayAssignments(event){
+        let temp = [document.getElementById("assignment1"), document.getElementById("assignment2"), document.getElementById("assignment3")]
+        try {
+            //A fetch statement that collects the name of the assignments in the database
+            let response = await fetch('/user/assignments', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(res => {return res.json()})
+                .then(data => assignmentTitle = data)
+
+                //A fetch statement that collects the description of each of the assignments
+                response = await fetch('/user/assignmentsDesc', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                })
+                    .then(res => {return res.json()})
+                    .then(data => dataStore = data)
+
+                //Populates the list with the amount of assignments found in the database
+                for(let i = 0; assignmentTitle[0].assignmentid.length > i; i++){
+                    if(i >= dataStore.length)  
+                        addAssignmentBox(i + 1, assignmentTitle[0].assignmentid[i], 'Assignment ' +(i+1))
+                    else
+                        addAssignmentBox(i + 1, assignmentTitle[0].assignmentid[i], dataStore[i].description)
+                    }
+                
+                return
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        };
+
+        //Function that creates an HTML Element to hold the assignment information
+        function addAssignmentBox(i, assignmentName, assignmentDesc){
+            document.getElementById("accordion")
+                        .innerHTML +=
+                        "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+assignmentDesc+"</p> <a href='' class='btn btn-primary'>Start Assignment</a> </div> </div></div>";
+        }
