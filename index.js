@@ -235,13 +235,21 @@ app.listen(port, () => {
 });
 
 app.get('/user/assignmentsCourse', (req, res) => {
-  const { username } = req.body;
-  pool.query(`SELECT course FROM users WHERE users.userid = 32`, (err, result) => {
+  let sessionID = req.session;
+  console.log(sessionID)
+  pool.query(`SELECT course FROM users WHERE users.userid = $1`, [32],(err, result) => {
     if (!err) {
       res.send(result.rows);
     }
   });
   pool.end;
+
+  // pool.query("SELECT course FROM users WHERE course = $1", [sessionID], (err, result) => {
+  //     if (!err) {
+  //       res.send(result.rows);
+  //     }
+  //     });
+  //   pool.end;
 })
 
 app.get('/user/assignments', (req, res) => {
@@ -278,6 +286,16 @@ app.get('/user/announcement', (req, res) => {
 app.get('/user/studentGrade', (req, res) => {
   const { username } = req.body;
   pool.query(`SELECT grade FROM assignment`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    }
+  });
+  pool.end;
+})
+
+app.get('/user/students', (req, res) => {
+  const { username } = req.body;
+  pool.query(`SELECT username FROM users WHERE course = 1`, (err, result) => {
     if (!err) {
       res.send(result.rows);
     }
