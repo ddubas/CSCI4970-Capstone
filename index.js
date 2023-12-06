@@ -264,6 +264,16 @@ app.get('/user/assignmentsDesc', (req, res) => {
   pool.end;
 })
 
+app.get('/user/announcement', (req, res) => {
+  const { username } = req.body;
+  pool.query(`SELECT announcements FROM course`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    }
+  });
+  pool.end;
+})
+
 
 
 module.exports = app;
