@@ -275,5 +275,16 @@ app.get('/user/announcement', (req, res) => {
 })
 
 
+app.get('/user/studentGrade', (req, res) => {
+  const { username } = req.body;
+  pool.query(`SELECT grade FROM assignment`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    }
+  });
+  pool.end;
+})
+
+
 
 module.exports = app;

@@ -92,6 +92,56 @@
             };
 
 
+            //Collects all the Assignments from the given course in the database
+    async function displayStudentGrade(event){
+        try {
+            //A fetch statement that collects the name of the assignments in the database
+            let response = await fetch('/user/assignments', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(res => {return res.json()})
+                .then(data => assignmentTitle = data)
+
+                //A fetch statement that collects the description of each of the assignments
+                response = await fetch('/user/assignmentsDesc', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                })
+                    .then(res => {return res.json()})
+                    .then(data => dataStore = data)
+
+                //A fetch statement that collects the grade of each of the assignments
+                response = await fetch('/user/studentGrade', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                })
+                    .then(res => {return res.json()})
+                    .then(data => gradeStore = data)
+                    console.log(gradeStore)
+
+                //Populates the list with the amount of assignments found in the database
+                for(let i = 0; assignmentTitle[0].assignmentid.length > i; i++){
+                    if(i >= dataStore.length)  
+                        addGradeBox(i + 1, assignmentTitle[0].assignmentid[i], 'Assignment ' +(i+1), gradeStore[i].grade)
+                    else
+                        addGradeBox(i + 1, assignmentTitle[0].assignmentid[i], dataStore[i].description, gradeStore[i].grade)
+                    }
+
+                    
+                
+                return
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        };
+
 
         //Function that creates an HTML Element to hold the assignment information
         function addAssignmentBox(i, assignmentName, assignmentDesc){
@@ -106,4 +156,11 @@
             document.getElementById("accordion").
                         innerHTML +=                         
                         "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ annName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+announcement+"</p> <a href='' type='button' class='btn btn-danger'>Delete</a> </div> </div></div>";
+        }
+
+        //Function that creates an HTML Element to hold the students grade information
+        function addGradeBox(i, assignmentName, assignmentDesc, grade){
+            document.getElementById("accordion")
+                        .innerHTML +=
+                        "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+assignmentDesc+"</p> <div class='studentGrade'><p>Grade: "+grade+"</p></div> </div> </div></div>";
         }

@@ -10,6 +10,7 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="../../Scripts/DisplayCode.js"></script>
 </head>
 
 <body>
@@ -31,12 +32,12 @@
         </div>
       </nav>
     </div>
-    <div class="courseName">
+    <div class="courseName" id="courseName">
       <p>Student Name</p>
     </div>
     <div class="assignmentList">
       <div id="accordion">
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
@@ -96,7 +97,7 @@
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- Sticky Footer -->
@@ -105,6 +106,8 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>displayCourseName()</script>
+  <script>displayStudentGrade()</script>
 </body>
 
 </html>
