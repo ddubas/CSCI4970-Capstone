@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcement Page</title>
+  <link rel="stylesheet" href="../../Styles/Main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="cont">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/Student/Home">Algo Pro</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="/Student/Home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/Student/Grades">Your Grades</a>
+          <a class="nav-link" href="/Student/Assignments">Assignments</a>
+          <a class="nav-link" href="/Student/Announcements">Announcements</a>
+        </div>
+        <div class="viewBadge">
+          <span class="badge badge-success">Student View</span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="courseName" id="courseName">
+      <p>Ms. O's class</p>
+    </div>
+    <div class="assignmentList">
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                Attention Students
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              
+              Dear Students, I hope this message finds you well. As we dive deeper into our programming unit, I am 
+              excited to present your next assignment that will challenge and expand your coding skills. Assignment 
+              Details: Title: Web Development Project Due Date: [Insert Due Date] Submission Method: Please submit 
+              your project through [Insert Submission Method] Assignment Overview: In this assignment, you will be 
+              tasked with creating a dynamic and interactive web page. The project should demonstrate your understanding 
+              of HTML, CSS, and JavaScript. You are encouraged to be creative and think outside the box, incorporating 
+              additional features beyond the basic requirements. Basic Requirements: 1. Utilize HTML to structure your 
+              web page. 2. Apply CSS for styling and layout. 3. Implement JavaScript to add interactivity. 4. Ensure 
+              responsiveness for various screen sizes. Additional Challenges (Optional): - Incorporate user 
+              authentication. - Integrate external APIs for added functionality. - Create a visually appealing and 
+              user-friendly design. Submission Guidelines: - Ensure all files are neatly organized within a designated 
+              folder. - Include a README file with instructions on how to navigate and interact with your web page. - 
+              Zip the entire project folder for submission. Grading Criteria: Your project will be assessed based on 
+              functionality, creativity, code quality, and adherence to the requirements. Make sure to test your project
+               thoroughly before submission. Office Hours: If you have any questions or need clarification, feel free 
+               to attend my office hours on [Insert Office Hours Schedule]. I am here to support you throughout the 
+               assignment. I look forward to seeing your innovative web pages! Best of luck, and have fun coding! 
+               Sincerely, Ms.O Programming I Teacher.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                Please Read This
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              Dear Students, Your next challenge awaits! Create an interactive web page using HTML, CSS, 
+              and JavaScript. Optional: user auth, API integration. Submission guidelines: organize files, 
+              include README, zip folder. Good luck! Sincerely, Ms.O
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+                Side note
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Dear Students, I hope this message finds you well. As we dive deeper into our programming unit, I am 
+              excited to present your next assignment that will challenge and expand your coding skills. Assignment 
+              Details: Title: Web Development Project Due Date: [Insert Due Date] Submission Method: Please submit 
+              your project through [Insert Submission Method] Assignment Overview: In this assignment, you will be 
+              tasked with creating a dynamic and interactive web page. The project should demonstrate your understanding 
+              of HTML, CSS, and JavaScript.
+              This message is for those who are going to work on this capstone project. As you are aware this,
+              project is broken and I am not fully responsible for such a mess. Please contact danadam68410@gmail.com
+              if you wish to receive help on this project. Once again deeply sorry for this mess.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sticky Footer -->
+    <div class="footer">
+      <p class="text-center">@2023 AlgoPro | All Rights Reserved</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>displayCourseName()</script>
+    <script>displayAnnouncements()</script>
+</body>
+
+</html>

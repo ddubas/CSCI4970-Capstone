@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Page</title>
+    <link rel="stylesheet" href="../../Styles/Main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <div class="cont">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/Student/Home">Algo Pro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="/Student/Home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/Student/Grades">Your Grades</a>
+            <a class="nav-link" href="/Student/Assignments">Assignments</a>
+            <a class="nav-link" href="/Student/Announcements">Announcements</a>
+          </div>
+          <div class="viewBadge">
+            <span class="badge badge-success">Student View</span>
+          </div>
+        </div>
+      </nav>
+        <div class="footer2">
+            <p>Footer</p>
+        </div>
+        <div class="workArea">
+            <div class="exerciseName">
+                <p>Exercise</p>
+            </div>
+            <div class="codeDisplayBox">
+                <span>
+                    <% lineValues.forEach(values=> { %>
+                        <p>
+                            <%= values %>
+                        </p>
+                        <% }); %>
+                </span>
+
+                <span class="line">
+                    <p>Line 1</p>
+                </span>
+
+
+                <div class="line">
+                    <p>Line 2</p>
+                </div>
+                <div class="line">
+                    <p>Line 3</p>
+                </div>
+                <div class="currentLine">
+                    <p>Line 4</p>
+                </div>
+                <div class="line">
+                    <p>Line 5</p>
+                </div>
+                <div class="line">
+                    <p>Line 6</p>
+                </div>
+                <div class="line">
+                    <p>Line 7</p>
+                </div>
+                <div class="line">
+                    <p>Line 8</p>
+                </div>
+            </div>
+            <div class="answerContainer">
+                <div class="answerName">
+                    <p>Answer</p>
+                </div>
+                <div class="answerBox" id="answerDrop">
+                </div>
+            </div>
+            <div class="answerContainer">
+                <div class="optionName">
+                    Options
+                </div>
+                <div class="answerBox" id="dragParent">
+                    <div class="optionBoxs">
+                        O(n)
+                    </div>
+                    <div class="optionBoxs">
+                        On^2
+                    </div>
+                    <div class="optionBoxs">
+                        O LOG(n)
+                    </div>
+                </div>
+            </div>
+            <script>
+                dragula([document.getElementById("dragParent"), document.getElementById("answerDrop")], { copy: true }, { revertOnSpill: true });
+                dragula([document.getElementById("answerDrop")], { removeOnSpill: true })
+
+                // Add a custom drop event handler (optional)
+                drake.on('drop', function (el, target, source, sibling) {
+                    // Custom code to handle the drop event
+                    console.log('Item dropped!');
+                });
+            </script>
+            <div class="hintBox">
+                <p>Hint:</p>
+            </div>
+            <div class="hintButton">
+                <button type="button" class="btn btn-success">Hint</button>
+            </div>
+            <div class="hintButton">
+                <button type="button" class="btn btn-secondary">Previous</button>
+            </div>
+            <div class="nextButton">
+                <button type="button" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="../../Scripts/"></script>
+</body>
+
+</html>

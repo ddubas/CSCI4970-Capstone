@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Creator Page</title>
+  <link rel="stylesheet" href="../../Styles/Main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="cont">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/Teacher/Home">Algo Pro</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="/Teacher/Home">Home</a>
+          <a class="nav-link" href="/Teacher/Courses">Courses</a>
+          <a class="nav-link" href="/Teacher/StudentProfile">Profile</a>
+        </div>
+        <div class="viewBadge">
+          <span class="badge badge-danger">Teacher View</span>
+        </div>
+      </div>
+    </nav>
+    <div class="hintBox">
+      <form id="uploadForm" action="/upload" enctype="multipart/form-data" method="post">
+        <input type="file" name="uploaded_file" />
+        <div class="form-group">
+          <label for="formGroupExampleInput1">Enter Exercise Number</label>
+          <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Provide an exercise number" name="exnum">
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Enter Hint</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Provide a general hint" name="hint">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput3">Enter Answer</label>
+            <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="Provide the answer" name="answer">
+          </div>
+          <button type="submit">Upload</button>
+      </form>
+      <div class="dueDateBox">
+        <form action="" method="post">
+          <label for="due">Select due date</label>
+          <input type="date" id="due" class="dueDateInput" required />
+        </form>
+
+      </div>
+      <div class="exampleSubButton">
+        <form action="" method="post">
+          <button type="submit" class="btn btn-primary btn-lg">Add Example</button>
+        </form>
+      </div>
+    </div>
+    <!-- Sticky Footer -->
+    <div class="footer">
+      <p class="text-center">@2023 AlgoPro | All Rights Reserved</p>
+    </div>
+    <script>
+      const form = document.getElementById('uploadForm')
+
+      const sendFiles = async () => {
+
+        const myFiles = document.getElementById('myFiles').files
+
+        const formData = new FormData()
+
+        Object.keys(myFiles).forEach(key => {
+          formData.append(myFiles.item(key).name, myFiles.item(key))
+        })
+      }
+
+      const response = await fetch('http://localhost:3000/upload', {
+        method: 'POST',
+        body: formData
+      })
+
+      const json = await response.json()
+
+      const h2 = document.querySelector('h2')
+      h2.textContent = `Status: ${json?.status}`
+
+      const h3 = document.querySelector('h3')
+      h3.textContent = json?.message
+
+      console.log(json)
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        sendFiles()
+      })
+    </script>
+</body>
+
+</html>

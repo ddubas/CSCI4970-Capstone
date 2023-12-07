@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../CSCI4970-Capstone-1"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CSCI4970-Capstone"
+	}
+}
