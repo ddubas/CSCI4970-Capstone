@@ -2,85 +2,80 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="../../Styles/Main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
-    <script src="../../Scripts/DisplayCode.js"></script>
-    <script>
-        function test() {
-            temp = document.getElementById("courseID");
-            temp.innerHTML = "Hello";
-            return;
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="../../Styles/Main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/bd7cd2de14.js" crossorigin="anonymous"></script>
+  <script src="../../Scripts/DisplayCode.js"></script>
+  <script>
+    function test() {
+      temp = document.getElementById("courseID");
+      temp.innerHTML = "Hello";
+      return;
+    }
+  </script>
 </head>
 
 <body onload="populateTable()">
-    <div class="cont">
-        <!-- Combined Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Algo Pro</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="/Teacher/Home">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="/Teacher/Courses">Courses</a>
-                    <a class="nav-link" href="/Teacher/StudentProfile">Profile</a>
-                    <a class="nav-link" href="/Teacher/Announcements">Announcements</a>
-                </div>
-                <div class="viewBadge">
-                    <span class="badge badge-danger">Teacher View</span>
-                </div>
-            </div>
-        </nav>
-
-        <div class="courseList">
-            <div class="individualCourse card1">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../Images/CapCardImage.jpg" class="card-img-top" alt="Image relating to the class">
-                    <div class="card-body">
-                        <h5 class="card-title" id="courseID">Course Name</h5>
-                        <p class="card-text">Extra info about the course</p>
-                        <a href="/Teacher/Courses" class="btn btn-primary">Go to course</a>
-                    </div>
-                </div>
-            </div>
-            <div class="individualCourse card2">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../Images/CapCardImage.jpg" class="card-img-top" alt="Image relating to the class">
-                    <div class="card-body">
-                        <h5 class="card-title">Course Name</h5>
-                        <p class="card-text">Extra info about the course</p>
-                        <a href="/Teacher/Courses" class="btn btn-primary">Go to course</a>
-                    </div>
-                </div>
-            </div>
-            <div class="newCourse">
-                <a href="/Teacher/AddCourse">
-                    <button type="submit" class="btn btn-success">Add Course</button>
-                </a>
-            </div>
+  <div class="cont">
+    <!-- Combined Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/Teacher/Home">Algo Pro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="/Teacher/Home">Home</a>
+            <a class="nav-link" href="/Teacher/Courses">Courses</a>
+            <a class="nav-link" href="/Teacher/StudentProfile">Profile</a>
+          </div>
+          <div class="viewBadge">
+            <span class="badge badge-danger">Teacher View</span>
+          </div>
         </div>
+      </nav>
 
-        <!-- Sticky Footer -->
-        <div class="footer">
-            <p class="text-center">@2023 AlgoPro | All Rights Reserved</p>
+    <div class="courseList">
+      <div class="individualCourse card1">
+        <div class="card" style="width: 18rem;">
+          <img src="../../Images/CapCardImage.jpg" class="card-img-top" alt="Image relating to the class">
+          <div class="card-body">
+            <h5 class="card-title" id="courseID">Course Name</h5>
+            <p class="card-text">Extra info about the course</p>
+            <a href="/Teacher/Courses" class="btn btn-primary">Go to course</a>
+          </div>
         </div>
+      </div>
+      <div class="individualCourse card2">
+        <div class="card" style="width: 18rem;">
+          <img src="../../Images/CapCardImage.jpg" class="card-img-top" alt="Image relating to the class">
+          <div class="card-body">
+            <h5 class="card-title">Course Name</h5>
+            <p class="card-text">Extra info about the course</p>
+            <a href="/Teacher/Courses" class="btn btn-primary">Go to course</a>
+          </div>
+        </div>
+      </div>
+      <div class="newCourse">
+        <a href="/Teacher/AddCourse">
+          <button type="submit" class="btn btn-success">Add Course</button>
+        </a>
+      </div>
     </div>
 
-    <!-- Include jQuery, Popper.js, and Bootstrap JS at the end of the body for better performance -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Sticky Footer -->
+    <div class="footer">
+      <p class="text-center">@2023 AlgoPro | All Rights Reserved</p>
+    </div>
+  </div>
+
+  <!-- Include jQuery, Popper.js, and Bootstrap JS at the end of the body for better performance -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
