@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/Teacher/Uploads', (req: Request, res: Response) => {
     // Use res.sendFile() to send the HTML file
-    res.sendFile(path.join(__dirname, '../../Client/Webpages/RegisterPage.html'));
+    res.sendFile(path.join(__dirname, '../../Client/Webpages/TeacherView/ExerciseUploadTeacherView.html'));
   });
   
   router.get('/Teacher/AddCourse', (req: Request, res: Response) => {

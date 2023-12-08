@@ -1,4 +1,32 @@
-     /**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Client/Scripts/DisplayCode.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Client/Scripts/DisplayCode.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>     /**
      * These scripts are used to populate the pages infomation from the database
      * Collects and chages the name of the course according to the course the user is assigned to in the database
      * @returns {void}
@@ -82,7 +110,7 @@
                 //Populates the list with the amount of announcements found in the database
                 for(let i = 0; announcementInfo[1].announcements.length > i; i++){
                     let annName = ''
-                    for(let j = 0;  (announcementInfo[1].announcements[i].length < j) || (j<=10); j++){
+                    for(let j = 0;  (announcementInfo[1].announcements[i].length &lt; j) || (j&lt;=10); j++){
                         annName = annName + announcementInfo[1].announcements[i][j]
                         if(j == 10)
                             annName = annName + "..." 
@@ -185,7 +213,7 @@
         function addAssignmentBox(i, assignmentName, assignmentDesc){
             document.getElementById("accordion")
                         .innerHTML +=
-                        "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+assignmentDesc+"</p> <a href='' class='btn btn-primary'>Start Assignment</a> </div> </div></div>";
+                        "&lt;div class='card'> &lt;div class='card-header' id='heading" + i + "'> &lt;h5 class='mb-0'> &lt;button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> &lt;p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"&lt;/p> &lt;/button> &lt;/h5>&lt;/div> &lt;div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> &lt;div class='card-body'> &lt;p id='desc"+i+"'>"+assignmentDesc+"&lt;/p> &lt;a href='' class='btn btn-primary'>Start Assignment&lt;/a> &lt;/div> &lt;/div>&lt;/div>";
         }
 
 
@@ -198,7 +226,7 @@
         function addAnnouncementBox(i, annName, announcement){
             document.getElementById("accordion").
                         innerHTML +=                         
-                        "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ annName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+announcement+"</p> <a href='' type='button' class='btn btn-danger'>Delete</a> </div> </div></div>";
+                        "&lt;div class='card'> &lt;div class='card-header' id='heading" + i + "'> &lt;h5 class='mb-0'> &lt;button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> &lt;p id='assignment" + i +"' class='textCenter'>"+ annName+"&lt;/p> &lt;/button> &lt;/h5>&lt;/div> &lt;div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> &lt;div class='card-body'> &lt;p id='desc"+i+"'>"+announcement+"&lt;/p> &lt;a href='' type='button' class='btn btn-danger'>Delete&lt;/a> &lt;/div> &lt;/div>&lt;/div>";
         }
 
         /**
@@ -211,7 +239,7 @@
         function addGradeBox(i, assignmentName, assignmentDesc, grade){
             document.getElementById("accordion")
                         .innerHTML +=
-                        "<div class='card'> <div class='card-header' id='heading" + i + "'> <h5 class='mb-0'> <button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> <p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"</p> </button> </h5></div> <div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> <div class='card-body'> <p id='desc"+i+"'>"+assignmentDesc+"</p> <div class='studentGrade'><p>Grade: "+grade+"</p></div> </div> </div></div>";
+                        "&lt;div class='card'> &lt;div class='card-header' id='heading" + i + "'> &lt;h5 class='mb-0'> &lt;button class='btn btn-link' data-toggle='collapse' data-target='#collapse"+i+"' aria-expanded='false' aria-controls='collapse"+i+"'> &lt;p id='assignment" + i +"' class='textCenter'>"+ assignmentName+"&lt;/p> &lt;/button> &lt;/h5>&lt;/div> &lt;div id='collapse"+i+"' class='collapse show' aria-labelledby='heading"+i+"' data-parent='#accordion'> &lt;div class='card-body'> &lt;p id='desc"+i+"'>"+assignmentDesc+"&lt;/p> &lt;div class='studentGrade'>&lt;p>Grade: "+grade+"&lt;/p>&lt;/div> &lt;/div> &lt;/div>&lt;/div>";
         }
 
         /**
@@ -221,5 +249,27 @@
         function addStudentBox(student){
             document.getElementById("list-tab")
                         .innerHTML +=
-                        "<a class='list-group-item list-group-item-action' id='list-home-list' data-toggle='list' href='#list-home' role='tab' aria-controls='home'>"+student+"</a>";        
-                    }
+                        "&lt;a class='list-group-item list-group-item-action' id='list-home-list' data-toggle='list' href='#list-home' role='tab' aria-controls='home'>"+student+"&lt;/a>";        
+                    }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addAnnouncementBox">addAnnouncementBox</a></li><li><a href="global.html#addAssignmentBox">addAssignmentBox</a></li><li><a href="global.html#addGradeBox">addGradeBox</a></li><li><a href="global.html#addStudentBox">addStudentBox</a></li><li><a href="global.html#displayAnnouncements">displayAnnouncements</a></li><li><a href="global.html#displayAssignments">displayAssignments</a></li><li><a href="global.html#displayCourseName">displayCourseName</a></li><li><a href="global.html#displayStudentGrade">displayStudentGrade</a></li><li><a href="global.html#displayStudents">displayStudents</a></li><li><a href="global.html#express">express</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Dec 07 2023 18:31:26 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

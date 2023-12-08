@@ -1,6 +1,10 @@
+/**
+ * A fetch request after the user submits the button to register as a user.
+ */
 document.getElementById('register-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     
+    // Grabs all elements from the page that needs to be inserted into the DB
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -16,9 +20,11 @@ document.getElementById('register-form').addEventListener('submit', async (event
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password, boolIsTeacher, email }),
+                body: JSON.stringify({ username, password, boolIsTeacher, email }), // Sends the data from the form to req.body
             });
         
+            // As long as the response was successful, the user will be either redirected to the Teacher home page or the Student home page
+            // Redirection depends if they are a teacher or not.
             if (response.ok) {
                 console.log("SUCCESS!!");
                 if (response.url.endsWith('/Teacher/Home')) {
