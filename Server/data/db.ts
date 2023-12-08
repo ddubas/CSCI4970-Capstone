@@ -1,3 +1,4 @@
+// Postgres credentials needed to connect to the DB
 const { Pool } = require('pg');
 
 const pool = new Pool({

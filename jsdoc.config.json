@@ -1,0 +1,17 @@
+{
+    "source": {
+      "include": [
+        "./Client/Scripts/",
+        "./index.js"
+    ],
+      "exclude": [
+        "./node_modules", 
+        "./.env", 
+        "./.gitignore"
+    ]
+    },
+    "opts": {
+      "destination": "./docs"
+    }
+  }
+  
