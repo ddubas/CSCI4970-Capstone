@@ -41,3 +41,8 @@ AlgoPro requires a modern browser since it is a web-based application. Since you
   -Added session functionality to streamline user data and API call interaction
 
 ### Milestone 5:
+  -Added API calls to populate the webpages using the database 
+
+  -Created a function that will automatically create the correct number of HTML elements 
+
+  -Made it so the tables on the assignment, announcement, and grade page are collapsable 
