@@ -385,5 +385,8 @@ app.get('/user/students', (req, res) => {
   pool.end;
 });
 
+app.listen(3000, ()=>{
+  console.log("RUNNING")
+});
 
 module.exports = app;
