@@ -6,7 +6,7 @@ AlgoPro is a web-based application that aims to help students practice thier alg
 
 ## How do I use AlgoPro?
 
-AlgoPro requires a modern browser since it is a web-based application. Since you are reading this right now you most likley already have a compatible device to view this on! To begin using AlgoPro visit NEEDS LINK.
+AlgoPro requires a modern browser since it is a web-based application. Since you are reading this right now you most likley already have a compatible device to view this on!
 
 ## Release Notes
 
